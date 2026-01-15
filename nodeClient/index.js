@@ -1,4 +1,7 @@
 const os = require('os');
+require('dotenv').config();
+
+const SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000';
 const io = require('socket.io-client');
 const options = {
   auth: {
@@ -6,7 +9,7 @@ const options = {
   },
 };
 
-const socket = io('http://127.0.0.1:3000', options);
+const socket = io(SERVER_URL, options);
 socket.on('connect', () => {
   const nI = os.networkInterfaces();
   let macA;

@@ -4,10 +4,10 @@ const options = {
   auth: { token: '23jrtiheriufyqwidsf' },
 };
 
-const NODE_URL = import.meta.env.NODE_URL || 'http://localhost:3000';
-console.log(NODE_URL);
+const VITE_SERVER_URL =
+  import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
 
-const socket = io(NODE_URL, options);
+const socket = io(VITE_SERVER_URL, options);
 
 socket.on('connect', () => {
   // console.log(data);

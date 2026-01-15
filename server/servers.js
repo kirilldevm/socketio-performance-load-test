@@ -1,11 +1,16 @@
 const cluster = require('cluster'); //makes it so we can use multiple threads
-const http = require('http'); //if we need Express, we will implement it a different way
+const http = require('http'); //if we need Express, we will implement it a
+// different way
+
 const { Server } = require('socket.io');
 const numCPUs = require('os').cpus().length;
 const { setupMaster, setupWorker } = require('@socket.io/sticky'); //makes it so a client can find its way back to the correct worker
 const { createAdapter, setupPrimary } = require('@socket.io/cluster-adapter'); //makes it so the primary node can emit to everyone
 
 const socketMain = require('./socketMain');
+require('dotenv').config();
+
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 if (cluster.isPrimary) {
   console.log(`Master ${process.pid} is running`);
@@ -46,7 +51,7 @@ if (cluster.isPrimary) {
   const httpServer = http.createServer();
   const io = new Server(httpServer, {
     cors: {
-      origin: 'http://localhost:5173',
+      origin: FRONTEND_URL,
       credentials: true,
     },
   });
