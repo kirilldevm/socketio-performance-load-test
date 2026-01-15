@@ -48,21 +48,17 @@ if (cluster.isPrimary) {
 } else {
   console.log(`Worker ${process.pid} started`);
 
-  const httpServer = http.createServer();
-  const io = new Server(httpServer, {
-    cors: {
-      origin: FRONTEND_URL,
-      credentials: true,
-    },
-  });
+  // const httpServer = http.createServer();
+  // const io = new Server(httpServer, {
+  //   cors: {
+  //     origin: FRONTEND_URL,
+  //     credentials: true,
+  //   },
+  // });
 
-  // use the cluster adapter
-  io.adapter(createAdapter()); //change from the default adapter
-
-  // setup connection with the primary process
+  const io = new Server();
+  io.adapter(createAdapter());
   setupWorker(io);
 
-  //socketMain is OUR file where our emits and listens happen.
-  //it needs the io object
   socketMain(io, process.pid);
 }
