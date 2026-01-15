@@ -56,6 +56,8 @@ if (cluster.isPrimary) {
     },
   });
 
+  io.listen(0);
+
   io.adapter(createAdapter());
   setupWorker(io);
 
