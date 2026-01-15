@@ -1,6 +1,20 @@
 const os = require('os');
 require('dotenv').config();
 
+const http = require('http');
+
+// Render will send a request here to see if your app is "alive"
+http
+  .createServer((req, res) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Worker Active');
+  })
+  .listen(process.env.PORT || 3000, () => {
+    console.log(
+      `Health check server listening on port ${process.env.PORT || 3000}`
+    );
+  });
+
 const SERVER_URL = process.env.SERVER_URL || 'http://localhost:3000';
 const io = require('socket.io-client');
 const options = {
