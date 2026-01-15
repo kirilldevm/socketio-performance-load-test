@@ -3,7 +3,7 @@ import './App.css';
 import Widget from './components/widget';
 import socket from './utilities/socketConnection';
 
-type PerformanceData = {
+export type PerformanceData = {
   cpuLoad: number;
   cpuSpeed: number;
   cpuType: string;

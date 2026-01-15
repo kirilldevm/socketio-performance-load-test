@@ -1,7 +1,14 @@
 import { useEffect, useRef } from 'react';
 import drawCircle from '../utilities/canvasLoadAnimation';
 
-const Mem = ({ data }: any) => {
+interface MemData {
+  freeMem: number;
+  memUsage: number;
+  totalMem: number;
+  usedMem: number;
+}
+
+const Mem = ({ data }: { data: MemData }) => {
   const { freeMem, memUsage, totalMem, usedMem } = data;
 
   const memRef = useRef<HTMLCanvasElement>(null);

@@ -5,8 +5,9 @@ import Cpu from './cpu';
 import Mem from './mem';
 import Info from './info';
 import socket from '../utilities/socketConnection';
+import type { PerformanceData } from '../App';
 
-const Widget = ({ data }: any) => {
+const Widget = ({ data }: { data: PerformanceData }) => {
   const [isAlive, setIsAlive] = useState(true);
 
   const {

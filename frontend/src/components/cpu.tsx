@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import drawCircle from '../utilities/canvasLoadAnimation';
 
-const Cpu = ({ data }: any) => {
+const Cpu = ({ data }: { data: { cpuLoad: number } }) => {
   const canvasEl = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {

@@ -1,6 +1,16 @@
 import moment from 'moment';
 
-const Info = ({ data }) => {
+interface InfoProps {
+  data: {
+    osType: string;
+    upTime: number;
+    cpuType: string;
+    numCores: number;
+    cpuSpeed: number;
+  };
+}
+
+const Info = ({ data }: InfoProps) => {
   return (
     <div className='col-sm-3 col-sm-offset-1 cpu-info'>
       <h3>Operating System</h3>
