@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import './App.css';
-import socket from './utilities/socketConnection';
 import Widget from './components/widget';
+import socket from './utilities/socketConnection';
 
 type PerformanceData = {
   cpuLoad: number;
@@ -18,27 +18,26 @@ type PerformanceData = {
 };
 
 function App() {
-  const [performanceData, setPerformanceData] = useState({});
-
-  const perfMachineData: { [key: string]: PerformanceData } = {};
+  const [perfMachineData, setPerfMachineData] = useState<{
+    [key: string]: PerformanceData;
+  }>({});
 
   useEffect(() => {
-    socket.on('perfData', (data) => {});
+    socket.on('perfData', (data) => {
+      setPerfMachineData((prev) => ({
+        ...prev,
+        [data.macA]: data,
+      }));
+    });
   }, []); //run this once the component has rendered
 
-  useEffect(() => {
-    const perfDataInterval = setInterval(() => {
-      setPerformanceData(perfMachineData);
-    }, 1000);
-
-    return () => clearInterval(perfDataInterval);
-  }, []);
-
-  const widgets = Object.values(performanceData).map((d: any) => (
-    <Widget data={d} key={d.macA} />
-  ));
-
-  return <div className='container'>{widgets}</div>;
+  return (
+    <div className='container'>
+      {Object.keys(perfMachineData).map((key) => (
+        <Widget key={key} data={perfMachineData[key]} />
+      ))}
+    </div>
+  );
 }
 
 export default App;
