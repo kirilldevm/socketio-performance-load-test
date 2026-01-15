@@ -49,14 +49,13 @@ if (cluster.isPrimary) {
   console.log(`Worker ${process.pid} started`);
 
   // const httpServer = http.createServer();
-  // const io = new Server(httpServer, {
-  //   cors: {
-  //     origin: FRONTEND_URL,
-  //     credentials: true,
-  //   },
-  // });
+  const io = new Server({
+    cors: {
+      origin: FRONTEND_URL,
+      credentials: true,
+    },
+  });
 
-  const io = new Server();
   io.adapter(createAdapter());
   setupWorker(io);
 

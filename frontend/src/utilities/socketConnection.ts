@@ -5,7 +5,10 @@ const options = {
 };
 
 const VITE_SERVER_URL =
-  import.meta.env.VITE_SERVER_URL || 'http://localhost:3000';
+  import.meta.env.VITE_SERVER_URL ||
+  'https://socketio-performance-load-test.onrender.com';
+
+console.log(VITE_SERVER_URL);
 
 const socket = io(VITE_SERVER_URL, options);
 
