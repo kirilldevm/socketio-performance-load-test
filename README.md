@@ -10,6 +10,22 @@ This project is designed to test and monitor the performance of Socket.IO connec
 - **Server**: Socket.IO server handling multiple client connections and broadcasting metrics
 - **Node Client**: Simulated client connections for load testing purposes
 
+## How to test the application
+
+Run the server and frontend, and then run the nodeClient to simulate load.
+
+The frontend dashboard will display real-time metrics, including CPU usage, memory consumption, and system information.
+
+Frontend link: [https://socketio-performance-load-test-7i8m.vercel.app](https://socketio-performance-load-test-7i8m.vercel.app)
+
+The server will broadcast real-time metrics to all connected clients, and the nodeClient will simulate load by connecting to the server and sending periodic messages.
+
+Server link: [https://socketio-performance-load-test.onrender.com/](https://socketio-performance-load-test.onrender.com/)
+
+The Node Client Worker can be scaled to simulate high-load scenarios. It will connect to the server and send periodic messages to simulate load.
+
+Node Client link: [https://socketio-performance-load-test-2.onrender.com](https://socketio-performance-load-test-2.onrender.com)
+
 ## Project Structure
 
 ```
